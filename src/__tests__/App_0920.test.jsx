@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "../App";
 
-export const addTask = (task) => {
+const addTask = (task) => {
   // 할 일을 입력할 수 있는 input을 찾는다.
   const todoInput = screen.getByPlaceholderText("할 일을 입력하세요...");
   // 할 일 작성 이후 누를 버튼을 찾는다.

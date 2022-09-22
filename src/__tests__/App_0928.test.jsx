@@ -1,7 +1,14 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "@testing-library/react";
-import { addTask } from "./testUtils";
+import { render, screen, fireEvent } from "@testing-library/react";
+
+const addTask = (task) => {
+  const todoInput = screen.getByPlaceholderText("할 일을 입력하세요...");
+  const todoSubmit = screen.getByText("제출");
+
+  fireEvent.change(todoInput, { target: { value: task } });
+  fireEvent.click(todoSubmit);
+};
 
 test("투두 체크하기", () => {
   const { getByText } = render(<App />);
