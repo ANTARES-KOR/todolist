@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styles from "./App.module.css";
 import { nanoid } from "nanoid";
-import classNames from "classnames";
 
 import { BsTrash } from "react-icons/bs";
-import { useEffect } from "react";
+import { GrPowerReset } from "react-icons/gr";
 import { useCallback } from "react";
+import classNames from "classnames";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -56,6 +56,10 @@ function App() {
     });
   }, []);
 
+  const resetAllTodos = useCallback(() => {
+    confirm("모든 내용을 리셋하시겠어요?") && setTodos([]);
+  }, []);
+
   return (
     <main className={styles.main_background}>
       <section className={styles.content_section}>
@@ -71,13 +75,21 @@ function App() {
               value={inputValue}
             />
             <button type="submit" className={styles.todo_submit_button}>
-              제출
+              <span>제출</span>
             </button>
           </div>
           {inputError && (
             <p className={styles.todo_form__error_message}>{inputError}</p>
           )}
         </form>
+        <button
+          type="button"
+          className={styles.todo_reset_button}
+          onClick={() => resetAllTodos()}
+        >
+          <GrPowerReset />
+          reset
+        </button>
         <article className={styles.todo_container}>
           <ul className={styles.todo_container__inner}>
             {todos.map(({ id, content, isDone }, index) => {
@@ -96,7 +108,11 @@ function App() {
                       }}
                       value={isDone}
                     />
-                    <span className={isDone ? styles.todo__done : undefined}>
+                    <span
+                      className={classNames(styles.prevent_select, {
+                        [styles.todo__done]: isDone,
+                      })}
+                    >
                       {content}
                     </span>
                   </label>
