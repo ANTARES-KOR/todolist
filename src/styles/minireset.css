@@ -42,8 +42,16 @@ ul {
 
 button,
 input,
+label,
 select {
   margin: 0;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 html {

@@ -1,5 +1,10 @@
 import { useState } from "react";
 import styles from "./App.module.css";
+import { nanoid } from "nanoid";
+import classNames from "classnames";
+
+import { BsTrash } from "react-icons/bs";
+import { useEffect } from "react";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -8,9 +13,30 @@ function App() {
   const handleTodoSubmit = (e) => {
     e.preventDefault();
     setTodos((prev) => {
-      return [...prev, inputValue];
+      const newTodo = {
+        id: nanoid(),
+        content: inputValue,
+        isDone: false,
+      };
+
+      return [...prev, newTodo];
     });
     setInputValue("");
+  };
+
+  const removeTodoById = (id) => {
+    setTodos((prev) => {
+      return prev.filter((todo) => todo.id !== id);
+    });
+  };
+
+  const changeTodoDoneStatus = (id) => {
+    setTodos((prev) => {
+      const targetIndex = prev.findIndex((todo) => todo.id === id);
+      const newTodos = [...prev];
+      const [targetTodo] = newTodos.splice(targetIndex, 1);
+      return [...newTodos, { ...targetTodo, isDone: !targetTodo.isDone }];
+    });
   };
 
   return (
@@ -28,11 +54,36 @@ function App() {
           </button>
         </form>
         <article className={styles.todo_container}>
-          {todos.map((todo, index) => {
+          {todos.map(({ id, content, isDone }, index) => {
             return (
-              <label key={index} id={`todo-checkbox-${index}`} className={styles.todo}>
-                <input type="checkbox" id={`todo-checkbox-${index}`} />
-                <span>{todo}</span>
+              <label
+                key={id}
+                id={`todo-checkbox-${index}`}
+                className={styles.todo}
+              >
+                <div className={styles.todo__label}>
+                  <input
+                    className={styles.todo__label__checkbox}
+                    type="checkbox"
+                    id={`todo-checkbox-${index}`}
+                    onChange={() => {
+                      changeTodoDoneStatus(id);
+                    }}
+                    value={isDone}
+                  />
+                  <span className={isDone ? styles.todo__done : undefined}>
+                    {content}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    removeTodoById(id);
+                  }}
+                  className={styles.todo__remove_button}
+                >
+                  <BsTrash />
+                </button>
               </label>
             );
           })}
