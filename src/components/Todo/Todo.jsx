@@ -62,13 +62,6 @@ export const Todo = ({ data, index, setTodos }) => {
 
   const todoEditInputRef = useRef();
 
-  useEffect(() => {
-    if (todoMode === TodoMode.EDIT && todoEditInputRef.current) {
-      todoEditInputRef.current.focus();
-      todoEditInputRef.current.value = content;
-    }
-  }, [todoMode, content]);
-
   return (
     <li className={styles.todo}>
       {todoMode === TodoMode.VIEW && (
@@ -122,6 +115,10 @@ export const Todo = ({ data, index, setTodos }) => {
           <input
             ref={todoEditInputRef}
             type="text"
+            defaultValue={content}
+            autoFocus="autoFocus"
+            required
+            placeholder={content}
             className={styles["todo__edit-form__input"]}
           />
           <button
