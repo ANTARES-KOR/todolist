@@ -19,6 +19,7 @@
   gap: 0.5rem;
   flex-grow: 1;
   cursor: pointer;
+  text-overflow: ellipsis;
 }
 
 .todo__label__checkbox {
@@ -49,4 +50,27 @@
 .todo__done {
   color: rgba(0, 0, 0, 0.2);
   text-decoration: line-through;
+}
+
+.todo__edit-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.todo__edit-form__input {
+  flex-grow: 1;
+}
+
+.todo__edit-form__submit {
+  flex-shrink: 0;
+  padding: 0.25rem 0.5rem;
+  background-color: rgb(187, 194, 227);
+}
+
+.todo__edit-form__cancel {
+  flex-shrink: 0;
+  padding: 0.25rem 0.5rem;
+  background-color: rgb(248, 205, 205);
 }
