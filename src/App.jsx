@@ -33,14 +33,26 @@ function App() {
         </button>
         <article className={styles.todo_container}>
           <ul className={styles.todo_container__inner}>
-            {todos.map((todo, index) => (
-              <Todo
-                key={todo.id}
-                index={index}
-                data={todo}
-                setTodos={setTodos}
-              />
-            ))}
+            {todos
+              .filter((todo) => !todo.isDone)
+              .map((todo, index) => (
+                <Todo
+                  key={todo.id}
+                  index={index}
+                  data={todo}
+                  setTodos={setTodos}
+                />
+              ))}
+            {todos
+              .filter((todo) => todo.isDone)
+              .map((todo, index) => (
+                <Todo
+                  key={todo.id}
+                  index={index}
+                  data={todo}
+                  setTodos={setTodos}
+                />
+              ))}
           </ul>
         </article>
       </section>

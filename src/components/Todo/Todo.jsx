@@ -30,15 +30,13 @@ export const Todo = ({ data, index, setTodos }) => {
 
   return (
     <li className={styles.todo}>
-      <label id={`todo-checkbox-${index}`} className={styles.todo__label}>
+      <div id={`todo-checkbox-${index}`} className={styles.todo__label}>
         <input
           className={styles.todo__label__checkbox}
           type="checkbox"
           id={`todo-checkbox-${index}`}
-          onChange={() => {
-            changeTodoDoneStatus(id);
-          }}
-          value={isDone}
+          onChange={() => changeTodoDoneStatus(id)}
+          checked={isDone}
         />
         <span
           className={classNames(styles.prevent_select, {
@@ -47,7 +45,7 @@ export const Todo = ({ data, index, setTodos }) => {
         >
           {content}
         </span>
-      </label>
+      </div>
       <button
         type="button"
         onClick={() => {
