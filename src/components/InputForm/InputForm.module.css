@@ -1,0 +1,32 @@
+.todo_form {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  border-radius: 0.25rem;
+  box-shadow: 0px 0.2rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+
+  background-color: #fff;
+}
+
+.todo_form__input_container {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.todo_form__error_message {
+  color: red;
+  font-size: 0.75rem;
+}
+
+.todo_input {
+  width: 100%;
+}
+
+.todo_submit_button {
+  width: 3rem;
+  flex-shrink: 0;
+}
