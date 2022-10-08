@@ -1,10 +1,9 @@
-import { useCallback } from "react";
 import { BsTrash } from "react-icons/bs";
 import classNames from "classnames";
 import styles from "./Todo.module.css";
 import { useState } from "react";
 import { useRef } from "react";
-import { useEffect } from "react";
+import { useTodo } from "../../hooks";
 
 const TodoMode = {
   EDIT: "EDIT",
@@ -12,51 +11,11 @@ const TodoMode = {
 };
 
 export const Todo = ({ data, index, setTodos }) => {
+  const { removeTodoById, changeTodoDoneStatus, changeTodoText } = useTodo({
+    setTodos,
+  });
+
   const { id, content, isDone } = data;
-
-  const removeTodoById = useCallback((id) => {
-    setTodos((prev) => {
-      return prev.filter((todo) => todo.id !== id);
-    });
-  }, []);
-
-  const changeTodoDoneStatus = useCallback(
-    (id) => {
-      setTodos((prev) => {
-        const targetIndex = prev.findIndex((todo) => todo.id === id);
-        const newTodos = [...prev];
-        const todosBeforeTarget = newTodos.slice(0, targetIndex);
-        const todosAfterTarget = newTodos.slice(targetIndex + 1);
-        const [targetTodo] = newTodos.splice(targetIndex, 1);
-
-        return [
-          ...todosBeforeTarget,
-          { ...targetTodo, isDone: !targetTodo.isDone },
-          ...todosAfterTarget,
-        ];
-      });
-    },
-    [setTodos]
-  );
-
-  const changeTodoText = useCallback(
-    (id, text) => {
-      setTodos((prev) => {
-        const targetIndex = prev.findIndex((todo) => todo.id === id);
-        const newTodos = [...prev];
-        const todosBeforeTarget = newTodos.slice(0, targetIndex);
-        const todosAfterTarget = newTodos.slice(targetIndex + 1);
-        const [targetTodo] = newTodos.splice(targetIndex, 1);
-
-        return [
-          ...todosBeforeTarget,
-          { ...targetTodo, content: text },
-          ...todosAfterTarget,
-        ];
-      });
-    },
-    [setTodos]
-  );
 
   const [todoMode, setTodoMode] = useState(TodoMode.VIEW);
 

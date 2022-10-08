@@ -1,23 +1,11 @@
-import { useState } from "react";
 import styles from "./App.module.css";
 import { GrPowerReset } from "react-icons/gr";
-import { useCallback } from "react";
 import { Todo } from "./components/Todo";
 import { InputForm } from "./components/InputForm";
-import { useEffect } from "react";
+import { useTodoList } from "./hooks";
 
 function App() {
-  const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos")) || []
-  );
-
-  const resetAllTodos = useCallback(() => {
-    confirm("모든 내용을 리셋하시겠어요?") && setTodos([]);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  const { todos, setTodos, resetAllTodos } = useTodoList();
 
   return (
     <main className={styles.main_background}>
