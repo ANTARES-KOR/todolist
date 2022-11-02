@@ -2,8 +2,13 @@ import { useInputForm } from "../../hooks";
 import styles from "./InputForm.module.css";
 
 export const InputForm = ({ setTodos }) => {
-  const { handleTodoSubmit, setInputError, setInputValue, inputError } =
-    useInputForm({ setTodos });
+  const {
+    handleTodoSubmit,
+    setInputError,
+    setInputValue,
+    inputError,
+    inputValue,
+  } = useInputForm({ setTodos });
 
   return (
     <form className={styles.todo_form} onSubmit={handleTodoSubmit}>

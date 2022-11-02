@@ -1,8 +1,7 @@
 import { BsTrash } from "react-icons/bs";
 import classNames from "classnames";
 import styles from "./Todo.module.css";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useTodo } from "../../hooks";
 
 const TodoMode = {
