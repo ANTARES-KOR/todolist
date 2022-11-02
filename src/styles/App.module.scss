@@ -1,0 +1,105 @@
+@use "/src/styles/variables";
+@use "/src/styles/colors";
+@use "/src/styles/borders";
+
+.page-background {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: colors.$background-color;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  width: variables.$app-container-width;
+  height: variables.$app-container-height;
+  max-height: calc(100vh - 4rem);
+  background-color: colors.$app-background-color;
+
+  border-radius: borders.$radius-big;
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.738);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header {
+  width: 100%;
+  height: variables.$app-header-height;
+  background-color: colors.$primary;
+  flex-shrink: 0;
+
+  padding: 1rem;
+  padding-top: 3rem;
+
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 1.5rem;
+    color: colors.$slate-50;
+    font-weight: 600;
+  }
+
+  .task-summary {
+    font-size: 0.8rem;
+    color: colors.$slate-50;
+    font-weight: 400;
+  }
+}
+
+.app-main {
+  flex: 1;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+}
+
+.contents {
+  height: 100%;
+  width: 100%;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: colors.$subtitle;
+  }
+}
+
+.tasks-section {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  max-height: 450px;
+}
+
+.tasks-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  gap: 0.75rem;
+}

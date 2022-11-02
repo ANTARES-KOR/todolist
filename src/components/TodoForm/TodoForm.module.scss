@@ -1,0 +1,64 @@
+@use "/src/styles/variables";
+@use "/src/styles/borders";
+@use "/src/styles/colors";
+
+$container-width: calc(variables.$app-container-width - 2rem);
+$submit-btn-width: calc($container-width - 2rem);
+
+.todoform-container {
+  width: $container-width;
+  height: 300px;
+  padding: 1rem;
+
+  background-color: #fff;
+  box-shadow: 0 0 20px 0 rgba(223, 223, 223, 0.5);
+
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 8rem;
+
+  border-radius: borders.$radius-medium;
+  z-index: variables.$todoform-container-z-index;
+}
+
+.todoform {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.todo-input {
+  width: 100%;
+
+  input[type="text"] {
+    height: 2rem;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: colors.$primary-light;
+    }
+  }
+}
+
+.form-submit-btn {
+  width: $submit-btn-width;
+  height: 2rem;
+  border: none;
+  border-radius: borders.$radius-small;
+  background-color: colors.$primary-light;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}

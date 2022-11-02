@@ -1,0 +1,54 @@
+@use "src/styles/colors";
+@use "src/styles/variables";
+
+$add-task-btn-diameter: 4rem;
+
+.app-navbar {
+  height: variables.$navbar-height;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  position: absolute;
+  bottom: 0;
+  z-index: variables.$navbar-z-index;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+.add-task-btn {
+  width: $add-task-btn-diameter;
+  height: $add-task-btn-diameter;
+  border-radius: 50%;
+  background-color: colors.$secondary-color;
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+
+  box-shadow: 0 0 20px 0 rgba(105, 235, 255);
+  position: absolute;
+  left: calc(50% - $add-task-btn-diameter/2);
+  bottom: calc(variables.$navbar-height - $add-task-btn-diameter/2 - 0.5rem);
+
+  transition: transform 0.25s;
+
+  font-size: 32px;
+
+  &.form_open {
+    transform: rotate(45deg);
+  }
+}

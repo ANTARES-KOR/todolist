@@ -1,0 +1,37 @@
+@use "/src/styles/colors";
+@use "/src/styles/borders";
+
+$checkbox-width: 1.2rem;
+
+.task-container {
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  padding-top: 0.75rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+
+  background-color: #fff;
+
+  border-radius: borders.$radius-small;
+
+  input[type="checkbox"] {
+    width: $checkbox-width;
+    height: $checkbox-width;
+    accent-color: colors.$primary;
+  }
+
+  .task-text {
+    font-size: 1rem;
+    color: colors.$text;
+  }
+
+  &.checked {
+    .task-text {
+      text-decoration: line-through;
+      color: colors.$text-disabled;
+    }
+  }
+}
